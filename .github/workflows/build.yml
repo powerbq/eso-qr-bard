@@ -1,0 +1,46 @@
+name: Build
+
+on:
+  push:
+    tags:
+      - 'current'
+
+permissions:
+  contents: write
+
+jobs:
+  pyinstaller-build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Create Executable
+        uses: sayyid5416/pyinstaller@v1
+        with:
+          python_ver: '3.12'
+          spec: 'app.spec'
+          requirements: 'requirements.txt'
+          upload_exe_with_name: 'EsoQrBard-Windows'
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            ./dist/app.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  pyinstaller-build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Executable
+        uses: sayyid5416/pyinstaller@v1
+        with:
+          python_ver: '3.12'
+          spec: 'app.spec'
+          requirements: 'requirements.txt'
+          upload_exe_with_name: 'EsoQrBard-Linux'
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            ./dist/app
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

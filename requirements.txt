@@ -1,0 +1,26 @@
+# --- Env ---
+python-dotenv
+
+# --- Window Capture and Management ---
+pygetwindow
+mss
+pywin32; sys_platform == 'win32'
+
+# --- QR/Barcode Recognition ---
+zxing-cpp
+
+# --- Image Preprocessing (OpenCV) ---
+opencv-python
+numpy
+
+# --- Sound ---
+sounddevice
+soundfile
+
+# --- Voice ---
+openai
+elevenlabs
+requests
+
+# --- Build ---
+pyinstaller
